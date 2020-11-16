@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.ikeguang</groupId>
+    <artifactId>spring-boot-learn</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <modules>
+        <module>spring-boot-helloworld</module>
+        <module>spring-boot-web</module>
+        <module>spring-boot-mybatis</module>
+        <module>spring-boot-jpa</module>
+        <module>sprint-boot-scheduler</module>
+        <module>spring-boot-mail</module>
+        <module>spring-boot-thymeleaf</module>
+        <module>spring-boot-shiro</module>
+        <module>spring-boot-jpa-thymeleaf</module>
+        <module>spring-boot-file-upload</module>
+        <module>spring-boot-monitor-mysql</module>
+        <module>spring-boot-swagger2</module>
+        <module>spring-boot-error</module>
+        <module>spring-boot-redis</module>
+        <module>spring-boot-config</module>
+        <module>spring-boot-jdbc</module>
+        <module>spring-boot-async</module>
+        <module>spring-boot-security</module>
+        <module>spring-boot-paging</module>
+        <module>spring-boot-datasource-jpa</module>
+        <module>spring-boot-ajax</module>
+        <module>spring-boot-echarts</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+
+</project>

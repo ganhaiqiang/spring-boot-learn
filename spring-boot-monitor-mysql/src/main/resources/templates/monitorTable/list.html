@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function del() {
+            if (confirm("您确定要删除吗？")) {
+                return true;
+            }
+            return false;
+        }
+        /*]]>*/
+    </script>
+</head>
+<body class="container">
+<br/>
+<h1>监控列表</h1>
+<br/><br/>
+<div class="with:80%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>表名</th>
+            <th>启用状态</th>
+            <th>是否实时</th>
+            <th>date 列名</th>
+            <th>hour列名</th>
+            <th>编辑</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="orderlist : ${monitorTables}">
+            <th scope="row" th:text="${orderlistStat.index + 1}">1</th>
+            <td th:text="${orderlist.tableName}">test</td>
+            <td th:text="${orderlist.status}">1</td>
+            <td th:text="${orderlist.realtime}">1</td>
+            <td th:text="${orderlist.dateColumnName}">date</td>
+            <td th:text="${orderlist.hourColumnName}">hour</td>
+            <td><a th:href="@{/edit(id=${orderlist.id})}">编辑</a></td>
+            <td><a th:onclick="return del()" th:href="@{/delete(id=${orderlist.id})}">删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/add" th:href="@{/add}" class="btn btn-info">add</a>
+    </div>
+</div>
+
+<div class="modal-footer no-margin-top">
+    <ul class="pagination pull-right no-margin">
+
+        <!-- 首页 -->
+        <li>
+            <a th:href="'/list?pageNum=0'">首页</a>
+        </li>
+
+        <!-- 上一页 -->
+        <li th:if="${monitorTables.hasPrevious()}">
+            <a th:href="'/list?pageNum=' + ${monitorTables.previousPageable().getPageNumber()}" th:text="上一页"></a>
+        </li>
+
+        <!-- 中间页 -->
+        <li th:each="pageNum:${#numbers.sequence(0, monitorTables.getTotalPages() - 1)}">
+            <a th:href="'/list?pageNum=' + ${pageNum}" th:text="${pageNum + 1}" th:if="${pageNum ne monitorTables.pageable.getPageNumber()}"></a>
+            <a th:href="'/list?pageNum=' + ${pageNum}" th:text="${pageNum + 1}" th:if="${pageNum eq monitorTables.pageable.getPageNumber()}" th:style="'font-weight:bold;background: #6faed9;'"></a>
+        </li>
+
+        <!-- 下一页 -->
+        <li th:if="${monitorTables.hasNext()}">
+            <a th:href="'/list?pageNum=' + ${monitorTables.nextPageable().getPageNumber()}" th:text="下一页"></a>
+        </li>
+
+        <!-- 尾页 -->
+        <li>
+            <a th:href="'/list?pageNum=' + ${monitorTables.getTotalPages() - 1}">尾页</a>
+        </li>
+
+    </ul>
+</div>
+</body>
+</html>
